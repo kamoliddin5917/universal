@@ -1,0 +1,66 @@
+@mixin ba($w, $h) {
+  content: "";
+  display: inline-block;
+  width: $w;
+  height: $h;
+  @content;
+}
+
+@mixin badimg($w, $h, $img, $bsize:contain) {
+  @include ba($w, $h);
+  background-image: url($img);
+  background-size: $bsize;
+  background-repeat: no-repeat;
+  @content;
+}
+
+@mixin bacimg($img, $size:cover) {
+  background-image: url($img);
+  background-size: $size;
+  background-repeat: no-repeat;
+  @content;
+}
+
+@mixin text($size, $weight, $color, $line-he:1.5, $style:normal) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  line-height: $line-he;
+  font-style: $style;
+  @content;
+}
+
+@mixin respond($breaktpoint) {
+  @if($breaktpoint==phone) {
+
+    // 600px : 16px = 37.5em
+    @media only screen and(max-width:37.5em) {
+      @content;
+    }
+  }
+
+  @if($breaktpoint==tablet) {
+
+    // 900px : 16px = 56.25em
+    @media only screen and(max-width:56.25em) {
+      @content;
+    }
+  }
+
+  @if($breaktpoint==tablet-land) {
+
+    // 1200px : 16px = 75em
+    @media only screen and(max-width:75em) {
+      @content;
+    }
+  }
+
+  @if($breaktpoint==big-screen) {
+
+    // 1800px : 16px = 112.5em
+    @media only screen and(min-width:112.5em) {
+      @content;
+    }
+  }
+}
+
